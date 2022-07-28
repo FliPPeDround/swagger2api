@@ -1,0 +1,31 @@
+{
+  "name": "swagger2api",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "dev": "node dist/index.mjs",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "colors": "^1.4.0",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^9.0.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.25.2",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^8.2.1",
+    "@types/node": "^16.11.41",
+    "eslint": "^8.20.0",
+    "tsup": "^6.1.2",
+    "typescript": "~4.7.4",
+    "vitest": "^0.16.0"
+  }
+}
