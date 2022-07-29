@@ -12,6 +12,6 @@ export const interfaceImport = () => {
     type: 'input',
     name: 'interfaceImport',
     message: '请输入导入axios实例路径',
-    default: 'import axios from \'axios\';',
+    default: 'import axios from \'axios\'',
   }
 }

@@ -3,7 +3,7 @@ import { getApiFsMap } from './../transform'
 import SwaggerJSON from './swaggerMock.json'
 
 describe('transform', () => {
-  it('should return an object', () => {
-    expect(getApiFsMap(SwaggerJSON.paths)).toMatchInlineSnapshot()
+  it('should return an object', async () => {
+    expect(await getApiFsMap(SwaggerJSON.paths)).toMatchInlineSnapshot()
   })
 })

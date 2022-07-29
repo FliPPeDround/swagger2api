@@ -1,5 +1,24 @@
 import { importTemplate, requireTemplate } from '@/template'
-import { hasChinese } from '@/shared'
+import { hasChinese, titleCase } from '@/shared'
+
+function getFuncName(
+  urlList: string[],
+  argumentsList: string[],
+  description: string,
+) {
+  const hasCN = hasChinese(description)
+  let funcName = ''
+  if (hasCN) {
+    let name = urlList[urlList.length - argumentsList.length]
+    if (argumentsList.length > 1)
+      name = `${name}by${titleCase(urlList[urlList.length - argumentsList.length + 1].replace(/[${}]/g, ''))}`
+    funcName = name
+  }
+  else {
+    funcName = description
+  }
+  return funcName
+}
 
 export async function getApiFsMap(paths: any) {
   const apiFsMap = new Map()
@@ -9,9 +28,10 @@ export async function getApiFsMap(paths: any) {
 
       const urlList = url.split('/')
       let axiosurl = url
-      const descriptionhasCN = hasChinese(paths[url][method]?.description)
+      const description = paths[url][method]?.description
+
       const summary = paths[url][method].summary
-      const functionName = url.split('/')[1]
+      const fileName = url.split('/')[1]
       const argaments = [body]
 
       for (const index in paths[url][method].parameters) {
@@ -21,15 +41,13 @@ export async function getApiFsMap(paths: any) {
         }
       }
 
-      const name = descriptionhasCN
-        ? urlList[urlList.length - arguments.length].replace(/[${}]/g, '')
-        : paths[url][method]?.description
+      const functionName = getFuncName(urlList, argaments, description)
 
-      if (apiFsMap.has(functionName))
-        apiFsMap.get(functionName).push(requireTemplate(axiosurl, method, argaments, body, name, summary))
+      if (apiFsMap.has(fileName))
+        apiFsMap.get(fileName).push(requireTemplate(axiosurl, method, argaments, body, functionName, summary))
 
       else
-        apiFsMap.set(functionName, [importTemplate, requireTemplate(axiosurl, method, argaments, body, name, summary)])
+        apiFsMap.set(fileName, [importTemplate, requireTemplate(axiosurl, method, argaments, body, functionName, summary)])
     })
   })
   return apiFsMap
