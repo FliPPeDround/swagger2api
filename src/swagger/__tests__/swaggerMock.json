@@ -1,0 +1,7428 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is to show api description",
+    "version": "1.0.0",
+    "title": "Swagger API",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "10.7.27.63:8111",
+  "basePath": "/aps",
+  "tags": [
+    {
+      "name": "download-recored-controller",
+      "description": "Download Recored Controller"
+    },
+    {
+      "name": "excel-controller",
+      "description": "Excel Controller"
+    },
+    {
+      "name": "fpm-datacopy-recored-controller",
+      "description": "Fpm Datacopy Recored Controller"
+    },
+    {
+      "name": "fpm-upload-recored-controller",
+      "description": "Fpm Upload Recored Controller"
+    },
+    {
+      "name": "home-controller",
+      "description": "Home Controller"
+    },
+    {
+      "name": "query-controller",
+      "description": "Query Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "User Controller"
+    },
+    {
+      "name": "validation-controller",
+      "description": "Validation Controller"
+    },
+    {
+      "name": "处理流程配置 - 插入表任务",
+      "description": "Fpm Flow Import Task Controller"
+    },
+    {
+      "name": "处理流程配置 - 数据校验、补全任务",
+      "description": "Fpm Flow Data Validation Task Controller"
+    },
+    {
+      "name": "处理流程配置 - 调度任务",
+      "description": "Fpm Flow Schedule Task Controller"
+    },
+    {
+      "name": "字典配置 - 字典数据",
+      "description": "Fpm Dict Data Controller"
+    },
+    {
+      "name": "字典配置 - 字典类型",
+      "description": "Fpm Dict Type Controller"
+    },
+    {
+      "name": "模板定义-分库分表",
+      "description": "Fpm Db Fragmentation Strategy Controller"
+    },
+    {
+      "name": "模板定义-字段检验",
+      "description": "Fpm Tmp Validation Fields Controller"
+    },
+    {
+      "name": "模板定义-查询条件定义",
+      "description": "Fpm Web Table Conditions Controller"
+    },
+    {
+      "name": "模板定义-模板信息配置",
+      "description": "Fpm Tmp Base Info Controller"
+    },
+    {
+      "name": "模板定义-模板字段定义",
+      "description": "Fpm Tmp Fields Controller"
+    },
+    {
+      "name": "模板定义-表格定义",
+      "description": "Fpm Web Table Controller"
+    },
+    {
+      "name": "配置管理 - 配置基本信息",
+      "description": "Configuration Migration Controller"
+    }
+  ],
+  "paths": {
+    "/ConfigurationMigration/create": {
+      "post": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "配置补录创建",
+        "description": "createConfBaseInfo",
+        "operationId": "createConfBaseInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createDTO",
+            "description": "配置补录创建请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "配置基础信息创建DTO",
+              "$ref": "#/definitions/配置基础信息创建DTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«long»",
+              "$ref": "#/definitions/Result«long»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/delete": {
+      "post": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "配置补录删除",
+        "description": "根据confCode删除",
+        "operationId": "deleteUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "confCodes",
+            "in": "query",
+            "description": "confCodes",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/downloadConf": {
+      "post": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "下载配置，返回FID：downloadConf",
+        "description": "下载配置，返回FID",
+        "operationId": "downloadConfUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "confCodeList",
+            "description": "配置编码集合",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "passWord",
+            "in": "query",
+            "description": "密码",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/get/{id}": {
+      "get": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "配置补录详情",
+        "description": "getConfBaseInfo",
+        "operationId": "getConfBaseInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "配置补录id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«配置基本信息VO对象»",
+              "$ref": "#/definitions/Result«配置基本信息VO对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/getFlowTask/{confCode}": {
+      "get": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "获取所有配置的流程任务",
+        "description": "getFlowTask",
+        "operationId": "getFlowTaskUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "confCode",
+            "in": "path",
+            "description": "配置编码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«流程任务VO对象»",
+              "$ref": "#/definitions/Result«流程任务VO对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/query": {
+      "get": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "配置补录查询",
+        "description": "配置补录查询",
+        "operationId": "queryUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "confName",
+            "in": "query",
+            "description": "配置名称（支持模糊查询）",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "currentPage",
+            "in": "query",
+            "description": "当前页",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "显示条数",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "主题名称",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/update": {
+      "put": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "配置补录修改",
+        "description": "updateConfBaseInfo",
+        "operationId": "updateConfBaseInfoUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateDTO",
+            "description": "配置补录修改请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "配置基础信息更新DTO",
+              "$ref": "#/definitions/配置基础信息更新DTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ConfigurationMigration/uploadConf": {
+      "post": {
+        "tags": [
+          "配置管理 - 配置基本信息"
+        ],
+        "summary": "上传配置，返回FID：uploadConf",
+        "description": "上传配置，返回FID",
+        "operationId": "uploadConfUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "长传文件内容",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "passWord",
+            "in": "query",
+            "description": "密码",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/FpmDatacopyRecored/copy": {
+      "post": {
+        "tags": [
+          "fpm-datacopy-recored-controller"
+        ],
+        "summary": "期间复制",
+        "description": "期间复制",
+        "operationId": "copyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recordParam",
+            "description": "recordParam",
+            "required": true,
+            "schema": {
+              "originalRef": "PeriodDataCopyParam",
+              "$ref": "#/definitions/PeriodDataCopyParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/FpmDatacopyRecored/getTopICmessage": {
+      "get": {
+        "tags": [
+          "fpm-datacopy-recored-controller"
+        ],
+        "summary": "查询主题下拉值",
+        "description": "查询主题下拉值",
+        "operationId": "getTopICmessageUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "query",
+            "description": "分类",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "confName",
+            "in": "query",
+            "description": "配置名称（支持模糊查询）",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "description": "是否启用",
+            "required": false,
+            "type": "boolean",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "主题",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/FpmUploadRecored/getRecord": {
+      "post": {
+        "tags": [
+          "fpm-upload-recored-controller"
+        ],
+        "summary": "补录历史查询",
+        "description": "补录历史查询",
+        "operationId": "getRecordUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recordParam",
+            "description": "recordParam",
+            "required": true,
+            "schema": {
+              "originalRef": "分页参数",
+              "$ref": "#/definitions/分页参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/FpmUploadRecored/invalid": {
+      "post": {
+        "tags": [
+          "fpm-upload-recored-controller"
+        ],
+        "summary": "补录历史",
+        "description": "作废操作",
+        "operationId": "invalidUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "confCode",
+            "in": "query",
+            "description": "confCode",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/Validation/DataSum": {
+      "post": {
+        "tags": [
+          "validation-controller"
+        ],
+        "summary": "数据求和",
+        "description": "数据求和",
+        "operationId": "copyUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dataSumValidationParam",
+            "description": "dataSumValidationParam",
+            "required": true,
+            "schema": {
+              "originalRef": "DataSumValidationParam",
+              "$ref": "#/definitions/DataSumValidationParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-data/create": {
+      "post": {
+        "tags": [
+          "字典配置 - 字典数据"
+        ],
+        "summary": "新增字典数据",
+        "description": "createDictData",
+        "operationId": "createDictDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dictDataDTO",
+            "description": "新增字典请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "字典数据创建请求参数",
+              "$ref": "#/definitions/字典数据创建请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«long»",
+              "$ref": "#/definitions/Result«long»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-data/del/{dictIds}": {
+      "delete": {
+        "tags": [
+          "字典配置 - 字典数据"
+        ],
+        "summary": "删除字典数据",
+        "description": "deleteDictData",
+        "operationId": "deleteDictDataUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "dictIds",
+            "in": "path",
+            "description": "字典数据id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "字典数据id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-data/get/{id}": {
+      "get": {
+        "tags": [
+          "字典配置 - 字典数据"
+        ],
+        "summary": "字典数据详情",
+        "description": "getDictData",
+        "operationId": "getDictDataUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "字典数据id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«字段数据VO对象»",
+              "$ref": "#/definitions/Result«字段数据VO对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-data/list": {
+      "post": {
+        "tags": [
+          "字典配置 - 字典数据"
+        ],
+        "summary": "字典数据列表",
+        "description": "getDictDataList",
+        "operationId": "getDictDataListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dictDataDTO",
+            "description": "dictDataDTO",
+            "required": true,
+            "schema": {
+              "originalRef": "字典数据查询请求参数",
+              "$ref": "#/definitions/字典数据查询请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "ResultPagingResponse«List«字段数据VO对象»»",
+              "$ref": "#/definitions/ResultPagingResponse«List«字段数据VO对象»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-data/update": {
+      "put": {
+        "tags": [
+          "字典配置 - 字典数据"
+        ],
+        "summary": "更新字典数据",
+        "description": "updateDictData",
+        "operationId": "updateDictDataUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dictDataDTO",
+            "description": "编辑字典请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "字典数据更新请求参数",
+              "$ref": "#/definitions/字典数据更新请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-type/create": {
+      "post": {
+        "tags": [
+          "字典配置 - 字典类型"
+        ],
+        "summary": "新增字典类型",
+        "description": "createDictType",
+        "operationId": "createDictTypeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createDTO",
+            "description": "传入的JSON格式",
+            "required": true,
+            "schema": {
+              "originalRef": "字典类型创建请求参数",
+              "$ref": "#/definitions/字典类型创建请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«long»",
+              "$ref": "#/definitions/Result«long»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-type/del/{dictIds}": {
+      "delete": {
+        "tags": [
+          "字典配置 - 字典类型"
+        ],
+        "summary": "删除字典类型",
+        "description": "deleteDictType",
+        "operationId": "deleteDictTypeUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "dictIds",
+            "in": "path",
+            "description": "字典类型id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "字典类型id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-type/get/{id}": {
+      "get": {
+        "tags": [
+          "字典配置 - 字典类型"
+        ],
+        "summary": "字典类型详情",
+        "description": "getDictType",
+        "operationId": "getDictTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "字典类型id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«字段类型VO对象»",
+              "$ref": "#/definitions/Result«字段类型VO对象»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-type/list": {
+      "post": {
+        "tags": [
+          "字典配置 - 字典类型"
+        ],
+        "summary": "字典类型列表",
+        "description": "getDictTypeList",
+        "operationId": "getDictTypeListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "queryDTO",
+            "description": "传入的JSON格式",
+            "required": true,
+            "schema": {
+              "originalRef": "字典类型查询请求参数",
+              "$ref": "#/definitions/字典类型查询请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "ResultPagingResponse«List«字段类型VO对象»»",
+              "$ref": "#/definitions/ResultPagingResponse«List«字段类型VO对象»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dict-type/update": {
+      "put": {
+        "tags": [
+          "字典配置 - 字典类型"
+        ],
+        "summary": "编辑字典类型",
+        "description": "updateDictType",
+        "operationId": "updateDictTypeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateDTO",
+            "description": "传入的JSON格式",
+            "required": true,
+            "schema": {
+              "originalRef": "字典类型更新请求参数",
+              "$ref": "#/definitions/字典类型更新请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/downloadRecored/getRecord": {
+      "post": {
+        "tags": [
+          "download-recored-controller"
+        ],
+        "summary": "下载记录查询",
+        "description": "下载记录查询",
+        "operationId": "getRecordUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recordParam",
+            "description": "记录参数",
+            "required": false,
+            "schema": {
+              "originalRef": "分页参数",
+              "$ref": "#/definitions/分页参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/file/download": {
+      "get": {
+        "tags": [
+          "excel-controller"
+        ],
+        "summary": "下载文件",
+        "description": "下载文件，返回FID",
+        "operationId": "downloadUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "fid",
+            "in": "query",
+            "description": "fid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/file/downloadData": {
+      "post": {
+        "tags": [
+          "excel-controller"
+        ],
+        "summary": "下载数据",
+        "description": "下载数据，返回FID",
+        "operationId": "downloadDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "excelDownloadRequstParam",
+            "description": "查询条件",
+            "required": false,
+            "schema": {
+              "originalRef": "ExcelDownloadRequstParam",
+              "$ref": "#/definitions/ExcelDownloadRequstParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/file/uploadData": {
+      "post": {
+        "tags": [
+          "excel-controller"
+        ],
+        "summary": "补录数据上传：uploadData",
+        "description": "补录数据上传",
+        "operationId": "uploadDataUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "confCode",
+            "in": "query",
+            "description": "配置编码",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "description": "补录说明",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "长传文件内容",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "overrideType",
+            "in": "query",
+            "description": "覆盖方式：Replace 全量，Append 增量",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmDbFragmentationStrategy/add": {
+      "post": {
+        "tags": [
+          "模板定义-分库分表"
+        ],
+        "summary": "新增分库分表策略",
+        "operationId": "addFpmDbFragmentationStrategyUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmDbFragmentationStrategyInsertDTO",
+            "description": "新增分库分表配置参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmDbFragmentationStrategyInsertDTO",
+              "$ref": "#/definitions/FpmDbFragmentationStrategyInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmDbFragmentationStrategy/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-分库分表"
+        ],
+        "summary": "删除分库分表策略",
+        "operationId": "deleteByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmDbFragmentationStrategy/edit": {
+      "put": {
+        "tags": [
+          "模板定义-分库分表"
+        ],
+        "summary": "编辑分库分表策略",
+        "operationId": "editFpmDbFragmentationStrategyUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmDbFragmentationStrategyUpdateDTO",
+            "description": "新增分库分表配置参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmDbFragmentationStrategyUpdateDTO",
+              "$ref": "#/definitions/FpmDbFragmentationStrategyUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmDbFragmentationStrategy/list": {
+      "get": {
+        "tags": [
+          "模板定义-分库分表"
+        ],
+        "summary": "获取分库分表策略列表",
+        "operationId": "getFpmDbFragmentationStrategyInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "templateCode",
+            "description": "模板编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmDbFragmentationStrategyVO»»",
+              "$ref": "#/definitions/Result«List«FpmDbFragmentationStrategyVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpBastInfo/add": {
+      "post": {
+        "tags": [
+          "模板定义-模板信息配置"
+        ],
+        "summary": "新增模板配置信息",
+        "description": "addFpmTmpBastInfo",
+        "operationId": "addFpmTmpBastInfoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpBaseInfoInsertDTO",
+            "description": "新增模板请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpBaseInfoInsertDTO",
+              "$ref": "#/definitions/FpmTmpBaseInfoInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpBastInfo/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-模板信息配置"
+        ],
+        "summary": "删除模板配置信息",
+        "description": "deleteTmpBaseInfo",
+        "operationId": "deleteByIdUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpBastInfo/edit": {
+      "put": {
+        "tags": [
+          "模板定义-模板信息配置"
+        ],
+        "summary": "编辑模板配置信息",
+        "description": "editFpmTmpBastInfo",
+        "operationId": "editFpmTmpBastInfoUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpBaseInfoUpdateDTO",
+            "description": "修改模板请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpBaseInfoUpdateDTO",
+              "$ref": "#/definitions/FpmTmpBaseInfoUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpBastInfo/get/{id}": {
+      "get": {
+        "tags": [
+          "模板定义-模板信息配置"
+        ],
+        "summary": "根据id获取模板信息",
+        "description": "getFpmTmpBastInfo",
+        "operationId": "getFpmTmpBastInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "字典类型id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«FpmTmpBaseInfoVO»",
+              "$ref": "#/definitions/Result«FpmTmpBaseInfoVO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpFields/add": {
+      "post": {
+        "tags": [
+          "模板定义-模板字段定义"
+        ],
+        "summary": "新增字段定义配置",
+        "description": "addFpmTmpFields",
+        "operationId": "addFpmTmpFieldsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpFiledsInsertDTO",
+            "description": "新增字段请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpFieldsInsertDTO",
+              "$ref": "#/definitions/FpmTmpFieldsInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpFields/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-模板字段定义"
+        ],
+        "summary": "删除字段定义配置",
+        "description": "deleteTmpFields",
+        "operationId": "deleteByIdUsingDELETE_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpFields/edit": {
+      "put": {
+        "tags": [
+          "模板定义-模板字段定义"
+        ],
+        "summary": "编辑字段定义配置",
+        "description": "editFpmTmpFields",
+        "operationId": "editFpmTmpFieldsUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpFieldsUpdateDTO",
+            "description": "修改字段请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpFieldsUpdateDTO",
+              "$ref": "#/definitions/FpmTmpFieldsUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpFields/list": {
+      "get": {
+        "tags": [
+          "模板定义-模板字段定义"
+        ],
+        "summary": "获取模板字段配置信息",
+        "description": "getTmpFieldListByTemplateCode",
+        "operationId": "getTmpFieldListByTemplateCodeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templateCode",
+            "in": "query",
+            "description": "模板编码",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmTmpFiledsVO»»",
+              "$ref": "#/definitions/Result«List«FpmTmpFiledsVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpFields/targetFieldList": {
+      "post": {
+        "tags": [
+          "模板定义-模板字段定义"
+        ],
+        "summary": "获取目标表中的所有字段",
+        "operationId": "getObjTableFieldsListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "filedsQuery",
+            "description": "查询目标表格字段请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "FiledsQuery",
+              "$ref": "#/definitions/FiledsQuery"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«string»»",
+              "$ref": "#/definitions/Result«List«string»»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpValidationFields/add": {
+      "post": {
+        "tags": [
+          "模板定义-字段检验"
+        ],
+        "summary": "新增字段校验配置",
+        "description": "addFpmTmpValidationFields",
+        "operationId": "addFpmTmpValidationFieldsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpValidationInsertDTO",
+            "description": "新增字段校验参数配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpValidationInsertDTO",
+              "$ref": "#/definitions/FpmTmpValidationInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpValidationFields/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-字段检验"
+        ],
+        "summary": "删除字段校验配置",
+        "description": "deleteTmpValidationFields",
+        "operationId": "deleteByIdUsingDELETE_3",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpValidationFields/edit": {
+      "put": {
+        "tags": [
+          "模板定义-字段检验"
+        ],
+        "summary": "编辑字段校验配置",
+        "description": "editFpmTmpValidationFields",
+        "operationId": "editFpmTmpValidationFieldsUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpValidationUpdateDTO",
+            "description": "修改字段校验参数配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpValidationUpdateDTO",
+              "$ref": "#/definitions/FpmTmpValidationUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmTmpValidationFields/list": {
+      "get": {
+        "tags": [
+          "模板定义-字段检验"
+        ],
+        "summary": "获取单个字段的所有校验规则",
+        "description": "getAllValidationFields",
+        "operationId": "getAllValidationFieldsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmTmpValidationListDTO",
+            "description": "fpmTmpValidationListDTO",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmTmpValidationListDTO",
+              "$ref": "#/definitions/FpmTmpValidationListDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmTmpValidationVO»»",
+              "$ref": "#/definitions/Result«List«FpmTmpValidationVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTable/add": {
+      "post": {
+        "tags": [
+          "模板定义-表格定义"
+        ],
+        "summary": "新增查询表格字段配置",
+        "description": "addFpmWebTable",
+        "operationId": "addFpmWebTableUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmWebTableInsertDTO",
+            "description": "新增查询表格字段配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmWebTableInsertDTO",
+              "$ref": "#/definitions/FpmWebTableInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTable/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-表格定义"
+        ],
+        "summary": "删除字段信息配置",
+        "description": "deleteWebTable",
+        "operationId": "deleteByIdUsingDELETE_5",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTable/edit": {
+      "put": {
+        "tags": [
+          "模板定义-表格定义"
+        ],
+        "summary": "编辑查询表格字段配置",
+        "description": "editFpmWebTable",
+        "operationId": "editFpmWebTableUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmWebTableUpdateDTO",
+            "description": "编辑查询表格字段配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmWebTableUpdateDTO",
+              "$ref": "#/definitions/FpmWebTableUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTable/list": {
+      "get": {
+        "tags": [
+          "模板定义-表格定义"
+        ],
+        "summary": "获取所有字段配置信息",
+        "description": "getWebTableFieldList",
+        "operationId": "getWebTableFieldListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templateCode",
+            "in": "query",
+            "description": "模板编码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmWebTableVO»»",
+              "$ref": "#/definitions/Result«List«FpmWebTableVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTable/tmpFieldList": {
+      "get": {
+        "tags": [
+          "模板定义-表格定义"
+        ],
+        "summary": "获取目标表格定义字段",
+        "description": "getTmpFieldsList",
+        "operationId": "getTmpFieldsListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templateCode",
+            "in": "query",
+            "description": "模板编码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmTmpFiledsVO»»",
+              "$ref": "#/definitions/Result«List«FpmTmpFiledsVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTableConditions/FieldList": {
+      "get": {
+        "tags": [
+          "模板定义-查询条件定义"
+        ],
+        "summary": "获取查询表格字段信息",
+        "description": "getWebTableFields",
+        "operationId": "getWebTableFieldsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templateCode",
+            "in": "query",
+            "description": "模板编码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«string»»",
+              "$ref": "#/definitions/Result«List«string»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTableConditions/add": {
+      "post": {
+        "tags": [
+          "模板定义-查询条件定义"
+        ],
+        "summary": "新增过滤字段配置",
+        "description": "addFpmWebTableConditions",
+        "operationId": "addFpmWebTableConditionsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmWebFilterConditionsInsertDTO",
+            "description": "新增过滤字段配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmWebFilterConditionsInsertDTO",
+              "$ref": "#/definitions/FpmWebFilterConditionsInsertDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTableConditions/delete/{id}": {
+      "delete": {
+        "tags": [
+          "模板定义-查询条件定义"
+        ],
+        "summary": "删除过滤字段配置",
+        "description": "deleteWebTableConditions",
+        "operationId": "deleteByIdUsingDELETE_4",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTableConditions/edit": {
+      "put": {
+        "tags": [
+          "模板定义-查询条件定义"
+        ],
+        "summary": "编辑过滤字段配置",
+        "description": "editFpmWebTableConditions",
+        "operationId": "editFpmWebTableConditionsUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fpmWebFilterConditionsUpdateDTO",
+            "description": "编辑过滤字段配置",
+            "required": true,
+            "schema": {
+              "originalRef": "FpmWebFilterConditionsUpdateDTO",
+              "$ref": "#/definitions/FpmWebFilterConditionsUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/fpmWebTableConditions/list": {
+      "get": {
+        "tags": [
+          "模板定义-查询条件定义"
+        ],
+        "summary": "获取过滤字段配置信息",
+        "description": "getConditionFieldsList",
+        "operationId": "getConditionFieldsListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "templateCode",
+            "in": "query",
+            "description": "模板编码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«List«FpmWebFilterConditionsVO»»",
+              "$ref": "#/definitions/Result«List«FpmWebFilterConditionsVO»»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/import-task/create": {
+      "post": {
+        "tags": [
+          "处理流程配置 - 插入表任务"
+        ],
+        "summary": "创建插入表任务信息",
+        "description": "createFlowImportTask",
+        "operationId": "createFlowImportTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createDTO",
+            "description": "新增插入表任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "插入表任务创建请求参数",
+              "$ref": "#/definitions/插入表任务创建请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/import-task/del/{id}": {
+      "delete": {
+        "tags": [
+          "处理流程配置 - 插入表任务"
+        ],
+        "summary": "删除插入表任务信息",
+        "description": "deleteFlowImportTask",
+        "operationId": "deleteFlowImportTaskUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/import-task/update": {
+      "put": {
+        "tags": [
+          "处理流程配置 - 插入表任务"
+        ],
+        "summary": "更新插入表任务信息",
+        "description": "updateFlowImportTask",
+        "operationId": "updateFlowImportTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateDTO",
+            "description": "更新插入表任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "插入表任务更新请求参数",
+              "$ref": "#/definitions/插入表任务更新请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/index": {
+      "get": {
+        "tags": [
+          "home-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/add": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "新增记录",
+        "description": "新增记录",
+        "operationId": "addUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "map",
+            "description": "map",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«Demo对象»",
+              "$ref": "#/definitions/Result«Demo对象»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/delete": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "根据Id删除记录",
+        "description": "根据Id删除记录",
+        "operationId": "deleteUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "map",
+            "description": "map",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getButtonInfo": {
+      "get": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取页面按钮信息：getButtonInfo",
+        "operationId": "getButtonInfoUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "String",
+            "name": "confCode",
+            "description": "模板编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getCoverageModeSelect": {
+      "get": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取覆盖方式下拉值",
+        "description": "获取覆盖方式下拉值",
+        "operationId": "getCoverageModeSelectUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "String",
+            "name": "confCode",
+            "description": "模板编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getDimensionValue": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取查询条件下拉值",
+        "description": "获取查询条件下拉值",
+        "operationId": "getDimensionValueUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "String",
+            "name": "confCode",
+            "description": "ds应用编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "String",
+            "name": "dimensionCode",
+            "description": "维度编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "dimensionValueRequest",
+            "description": "dimensionValueRequest",
+            "required": true,
+            "schema": {
+              "originalRef": "DimensionValueRequest",
+              "$ref": "#/definitions/DimensionValueRequest"
+            }
+          },
+          {
+            "in": "String",
+            "name": "linkedValue",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getFpmConfBaseInfos": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "getFpmConfBaseInfos",
+        "description": "获取配置补录列表",
+        "operationId": "getFpmConfBaseInfosUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "recordParam",
+            "description": "获取配置补录列表",
+            "required": false,
+            "schema": {
+              "originalRef": "BaseRequiredParam",
+              "$ref": "#/definitions/BaseRequiredParam"
+            }
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "主题",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getList": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取数据：getList",
+        "operationId": "getListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "queryParam",
+            "description": "queryParam",
+            "required": true,
+            "schema": {
+              "originalRef": "分页参数",
+              "$ref": "#/definitions/分页参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getReplenishList": {
+      "post": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取数据：getReplenishList",
+        "operationId": "getReplenishListUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "queryParam",
+            "description": "queryParam",
+            "required": true,
+            "schema": {
+              "originalRef": "分页参数",
+              "$ref": "#/definitions/分页参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getTableDataColumns": {
+      "get": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "获取查询列：getTableDataColumns",
+        "description": "获取查询列",
+        "operationId": "getTableDataColumnsUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "String",
+            "name": "confCode",
+            "description": "模板编码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/getTopICValue": {
+      "get": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "查询主题下拉值",
+        "description": "查询主题下拉值",
+        "operationId": "getTopICValueUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "query",
+            "description": "分类",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "confName",
+            "in": "query",
+            "description": "配置名称（支持模糊查询）",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "description": "是否启用",
+            "required": false,
+            "type": "boolean",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "主题",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/query/update": {
+      "put": {
+        "tags": [
+          "query-controller"
+        ],
+        "summary": "更新记录",
+        "description": "新增记录",
+        "operationId": "updateUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "map",
+            "description": "map",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/schedule-task/create": {
+      "post": {
+        "tags": [
+          "处理流程配置 - 调度任务"
+        ],
+        "summary": "创建调度任务信息",
+        "description": "createFlowScheduleTask",
+        "operationId": "createFlowScheduleTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createDTO",
+            "description": "新增创建任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "调度任务创建请求参数",
+              "$ref": "#/definitions/调度任务创建请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/schedule-task/del/{id}": {
+      "delete": {
+        "tags": [
+          "处理流程配置 - 调度任务"
+        ],
+        "summary": "删除调度任务信息",
+        "description": "deleteFlowScheduleTask",
+        "operationId": "deleteFlowScheduleTaskUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/schedule-task/update": {
+      "put": {
+        "tags": [
+          "处理流程配置 - 调度任务"
+        ],
+        "summary": "更新调度任务信息",
+        "description": "updateFlowScheduleTask",
+        "operationId": "updateFlowScheduleTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateDTO",
+            "description": "更新创建任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "调度任务更新请求参数",
+              "$ref": "#/definitions/调度任务更新请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/getApp/{appId}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getAppInfo",
+        "operationId": "getAppInfoUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "path",
+            "description": "appId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "App",
+              "$ref": "#/definitions/App"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "用户信息",
+        "description": "获取用户信息",
+        "operationId": "getProfileUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "ApiResponse",
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/validation-task/create": {
+      "post": {
+        "tags": [
+          "处理流程配置 - 数据校验、补全任务"
+        ],
+        "summary": "新增数据校验、补全任务信息",
+        "description": "createFlowDataValidationTask",
+        "operationId": "createFlowDataValidationTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "createDTO",
+            "description": "新增补全任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "数据校验、补全任务创建请求参数",
+              "$ref": "#/definitions/数据校验、补全任务创建请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/validation-task/del/{id}": {
+      "delete": {
+        "tags": [
+          "处理流程配置 - 数据校验、补全任务"
+        ],
+        "summary": "删除数据校验、补全任务信息",
+        "description": "deleteFlowDataValidationTask",
+        "operationId": "deleteFlowDataValidationTaskUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "主键ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/validation-task/update": {
+      "put": {
+        "tags": [
+          "处理流程配置 - 数据校验、补全任务"
+        ],
+        "summary": "更新数据校验、补全任务信息",
+        "description": "updateFlowDataValidationTask",
+        "operationId": "updateFlowDataValidationTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateDTO",
+            "description": "更新补全任务请求参数",
+            "required": true,
+            "schema": {
+              "originalRef": "数据校验、补全任务更新请求参数",
+              "$ref": "#/definitions/数据校验、补全任务更新请求参数"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result«boolean»",
+              "$ref": "#/definitions/Result«boolean»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/writeCookies": {
+      "get": {
+        "tags": [
+          "home-controller"
+        ],
+        "summary": "writeCookies",
+        "description": "写cookie",
+        "operationId": "writeCookiesUsingGET",
+        "produces": [
+          "*/*",
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "cookieName",
+            "in": "query",
+            "description": "cookie名称",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "cookieValue",
+            "in": "query",
+            "description": "cookie值",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "originalRef": "Result",
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ApiResponse"
+    },
+    "App": {
+      "type": "object",
+      "properties": {
+        "authorizedIps": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "App"
+    },
+    "BaseRequiredParam": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "BaseRequiredParam"
+    },
+    "DataSumValidationParam": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "DataSumValidationParam"
+    },
+    "Demo对象": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "config": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "状态： 0正常 1 异常"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "description": "类型： 0 模板1， 2 模板2"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "Demo对象"
+    },
+    "DimensionValueRequest": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "dimensionCode": {
+          "type": "string"
+        },
+        "dimensionId": {
+          "type": "string"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "linkedValue": {
+          "type": "string"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "DimensionValueRequest"
+    },
+    "ExcelDownloadRequstParam": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "conditionParamList": {
+          "type": "array",
+          "items": {
+            "originalRef": "SelectedConditionParam",
+            "$ref": "#/definitions/SelectedConditionParam"
+          }
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ExcelDownloadRequstParam"
+    },
+    "FiledsQuery": {
+      "type": "object",
+      "required": [
+        "dataBaseCode",
+        "targetTable"
+      ],
+      "properties": {
+        "dataBaseCode": {
+          "type": "string",
+          "description": "数据库名称"
+        },
+        "targetTable": {
+          "type": "string",
+          "description": "目标表名称"
+        }
+      },
+      "title": "FiledsQuery"
+    },
+    "FpmDbFragmentationStrategyInsertDTO": {
+      "type": "object",
+      "required": [
+        "databaseCodeList",
+        "fragmentationName",
+        "logicTableName"
+      ],
+      "properties": {
+        "dataNodeExpression": {
+          "type": "string",
+          "description": "数据节点表达式"
+        },
+        "databaseCodeList": {
+          "type": "string",
+          "description": "DS数据库CODE集合"
+        },
+        "dbFragmentationAlgorithm": {
+          "type": "string",
+          "description": "数据库分片算法"
+        },
+        "dbFragmentationField": {
+          "type": "string",
+          "description": "数据库分片字段"
+        },
+        "fragmentationName": {
+          "type": "string",
+          "description": "分片名称"
+        },
+        "logicTableName": {
+          "type": "string",
+          "description": "逻辑表名"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "tableFragmentationAlgorithm": {
+          "type": "string",
+          "description": "表分片算法"
+        },
+        "tableFragmentationField": {
+          "type": "string",
+          "description": "表分片字段"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmDbFragmentationStrategyInsertDTO"
+    },
+    "FpmDbFragmentationStrategyUpdateDTO": {
+      "type": "object",
+      "required": [
+        "databaseCodeList",
+        "fragmentationName",
+        "id",
+        "logicTableName"
+      ],
+      "properties": {
+        "dataNodeExpression": {
+          "type": "string",
+          "description": "数据节点表达式"
+        },
+        "databaseCodeList": {
+          "type": "string",
+          "description": "DS数据库CODE集合"
+        },
+        "dbFragmentationAlgorithm": {
+          "type": "string",
+          "description": "数据库分片算法"
+        },
+        "dbFragmentationField": {
+          "type": "string",
+          "description": "数据库分片字段"
+        },
+        "fragmentationName": {
+          "type": "string",
+          "description": "分片名称"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "logicTableName": {
+          "type": "string",
+          "description": "逻辑表名"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "tableFragmentationAlgorithm": {
+          "type": "string",
+          "description": "表分片算法"
+        },
+        "tableFragmentationField": {
+          "type": "string",
+          "description": "表分片字段"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmDbFragmentationStrategyUpdateDTO"
+    },
+    "FpmDbFragmentationStrategyVO": {
+      "type": "object",
+      "properties": {
+        "dataNodeExpression": {
+          "type": "string",
+          "description": "数据节点表达式"
+        },
+        "databaseCodeList": {
+          "type": "string",
+          "description": "DS数据库CODE集合"
+        },
+        "dbFragmentationAlgorithm": {
+          "type": "string",
+          "description": "数据库分片算法"
+        },
+        "dbFragmentationField": {
+          "type": "string",
+          "description": "数据库分片字段"
+        },
+        "fragmentationName": {
+          "type": "string",
+          "description": "分片名称"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "logicTableName": {
+          "type": "string",
+          "description": "逻辑表名"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "tableFragmentationAlgorithm": {
+          "type": "string",
+          "description": "表分片算法"
+        },
+        "tableFragmentationField": {
+          "type": "string",
+          "description": "表分片字段"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmDbFragmentationStrategyVO"
+    },
+    "FpmTmpBaseInfoInsertDTO": {
+      "type": "object",
+      "required": [
+        "confCode",
+        "databaseCode",
+        "databaseObject",
+        "databaseObjectType",
+        "hasDisplayError",
+        "hasWebDisplay",
+        "sheetName",
+        "startDataColumnIndex",
+        "startDataRowIndex",
+        "targetTable",
+        "templateCode",
+        "templateName"
+      ],
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "配置编码"
+        },
+        "databaseCode": {
+          "type": "string",
+          "description": "DS数据库CODE"
+        },
+        "databaseObject": {
+          "type": "string",
+          "description": "对应的SqlText或Table名"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型：Table/SqlText"
+        },
+        "endDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束列"
+        },
+        "endDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束行"
+        },
+        "excuteTimeout": {
+          "type": "integer",
+          "format": "int64",
+          "description": "执行超时时间"
+        },
+        "exportTmpDemoDataSql": {
+          "type": "string",
+          "description": "导出模版用例数据SQL"
+        },
+        "hasDisplayError": {
+          "type": "boolean",
+          "description": "是否显示错误"
+        },
+        "hasWebDisplay": {
+          "type": "boolean",
+          "description": "页面显示的模版"
+        },
+        "initDataSql": {
+          "type": "string",
+          "description": "待补充数据SQL"
+        },
+        "invalidAssociatedSql": {
+          "type": "string",
+          "description": "失效关联SQL"
+        },
+        "queryDatabaseCode": {
+          "type": "string",
+          "description": "数据查询DB"
+        },
+        "replenish": {
+          "type": "string",
+          "description": "待补充"
+        },
+        "replenishDatabaseCode": {
+          "type": "string",
+          "description": "待补充DB"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "startDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始列"
+        },
+        "startDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始行"
+        },
+        "targetTable": {
+          "type": "string",
+          "description": "目标表名"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "templateName": {
+          "type": "string",
+          "description": "名称"
+        }
+      },
+      "title": "FpmTmpBaseInfoInsertDTO"
+    },
+    "FpmTmpBaseInfoUpdateDTO": {
+      "type": "object",
+      "required": [
+        "confCode",
+        "databaseCode",
+        "databaseObject",
+        "databaseObjectType",
+        "hasDisplayError",
+        "hasWebDisplay",
+        "id",
+        "sheetName",
+        "startDataColumnIndex",
+        "startDataRowIndex",
+        "targetTable",
+        "templateCode",
+        "templateName"
+      ],
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "配置编码"
+        },
+        "databaseCode": {
+          "type": "string",
+          "description": "DS数据库CODE"
+        },
+        "databaseObject": {
+          "type": "string",
+          "description": "对应的SqlText或Table名"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型：Table/SqlText"
+        },
+        "endDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束列"
+        },
+        "endDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束行"
+        },
+        "excuteTimeout": {
+          "type": "integer",
+          "format": "int64",
+          "description": "执行超时时间"
+        },
+        "exportTmpDemoDataSql": {
+          "type": "string",
+          "description": "导出模版用例数据SQL"
+        },
+        "hasDisplayError": {
+          "type": "boolean",
+          "description": "是否显示错误"
+        },
+        "hasWebDisplay": {
+          "type": "boolean",
+          "description": "页面显示的模版"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "initDataSql": {
+          "type": "string",
+          "description": "待补充数据SQL"
+        },
+        "invalidAssociatedSql": {
+          "type": "string",
+          "description": "失效关联SQL"
+        },
+        "queryDatabaseCode": {
+          "type": "string",
+          "description": "数据查询DB"
+        },
+        "replenish": {
+          "type": "string",
+          "description": "待补充"
+        },
+        "replenishDatabaseCode": {
+          "type": "string",
+          "description": "待补充DB"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "startDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始列"
+        },
+        "startDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始行"
+        },
+        "targetTable": {
+          "type": "string",
+          "description": "目标表名"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "templateName": {
+          "type": "string",
+          "description": "名称"
+        }
+      },
+      "title": "FpmTmpBaseInfoUpdateDTO"
+    },
+    "FpmTmpBaseInfoVO": {
+      "type": "object",
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "配置编码"
+        },
+        "databaseCode": {
+          "type": "string",
+          "description": "DS数据库CODE"
+        },
+        "databaseObject": {
+          "type": "string",
+          "description": "对应的SqlText或Table名"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型：Table/SqlText"
+        },
+        "endDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束列"
+        },
+        "endDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据结束行"
+        },
+        "excuteTimeout": {
+          "type": "integer",
+          "format": "int64",
+          "description": "执行超时时间"
+        },
+        "exportTmpDemoDataSql": {
+          "type": "string",
+          "description": "导出模版用例数据SQL"
+        },
+        "hasDisplayError": {
+          "type": "boolean",
+          "description": "是否显示错误"
+        },
+        "hasWebDisplay": {
+          "type": "boolean",
+          "description": "页面显示的模版"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "initDataSql": {
+          "type": "string",
+          "description": "待补充数据SQL"
+        },
+        "invalidAssociatedSql": {
+          "type": "string",
+          "description": "失效关联SQL"
+        },
+        "queryDatabaseCode": {
+          "type": "string",
+          "description": "数据查询DB"
+        },
+        "replenish": {
+          "type": "string",
+          "description": "待补充"
+        },
+        "replenishDatabaseCode": {
+          "type": "string",
+          "description": "待补充DB"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "startDataColumnIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始列"
+        },
+        "startDataRowIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "数据开始行"
+        },
+        "targetTable": {
+          "type": "string",
+          "description": "目标表名"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "templateName": {
+          "type": "string",
+          "description": "名称"
+        }
+      },
+      "title": "FpmTmpBaseInfoVO"
+    },
+    "FpmTmpFieldsInsertDTO": {
+      "type": "object",
+      "required": [
+        "displayName",
+        "enabled",
+        "fieldCode",
+        "fieldName",
+        "fieldType",
+        "hasDeleteKey",
+        "hasDisplay",
+        "hasEditDisplay",
+        "hasFixedColumn",
+        "hasPrimaryKey",
+        "hasRequired",
+        "ignoreInsert",
+        "inputType",
+        "sheetName",
+        "templateCode"
+      ],
+      "properties": {
+        "columnWidth": {
+          "type": "integer",
+          "format": "int32",
+          "description": "列宽"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "dropDown": {
+          "type": "boolean"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段编码"
+        },
+        "fieldDesc": {
+          "type": "string",
+          "description": "字段描述"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "字段名称"
+        },
+        "fieldType": {
+          "type": "string",
+          "description": "数据类型"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "格式"
+        },
+        "hasDeleteKey": {
+          "type": "boolean",
+          "description": "删除键"
+        },
+        "hasDisplay": {
+          "type": "boolean",
+          "description": "是否显示"
+        },
+        "hasEditDisplay": {
+          "type": "boolean",
+          "description": "编辑是否显示"
+        },
+        "hasFixedColumn": {
+          "type": "boolean",
+          "description": "固定列"
+        },
+        "hasPrimaryKey": {
+          "type": "boolean",
+          "description": "主键列"
+        },
+        "hasRequired": {
+          "type": "boolean",
+          "description": "必填字段"
+        },
+        "ignoreInsert": {
+          "type": "boolean",
+          "description": "插入时候忽略"
+        },
+        "inputType": {
+          "type": "string",
+          "description": "输入类型"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "层级"
+        },
+        "parentFieldCode": {
+          "type": "string",
+          "description": "父级列"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "父级ID"
+        },
+        "precisionSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "小数精度大小"
+        },
+        "regexPattern": {
+          "type": "string",
+          "description": "校验的正则"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpFieldsInsertDTO"
+    },
+    "FpmTmpFieldsUpdateDTO": {
+      "type": "object",
+      "required": [
+        "displayName",
+        "enabled",
+        "fieldCode",
+        "fieldName",
+        "fieldType",
+        "hasDeleteKey",
+        "hasDisplay",
+        "hasEditDisplay",
+        "hasFixedColumn",
+        "hasPrimaryKey",
+        "hasRequired",
+        "id",
+        "ignoreInsert",
+        "inputType",
+        "sheetName",
+        "templateCode"
+      ],
+      "properties": {
+        "columnWidth": {
+          "type": "integer",
+          "format": "int32",
+          "description": "列宽"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "dropDown": {
+          "type": "boolean"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段编码"
+        },
+        "fieldDesc": {
+          "type": "string",
+          "description": "字段描述"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "字段名称"
+        },
+        "fieldType": {
+          "type": "string",
+          "description": "数据类型"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "格式"
+        },
+        "hasDeleteKey": {
+          "type": "boolean",
+          "description": "删除键"
+        },
+        "hasDisplay": {
+          "type": "boolean",
+          "description": "是否显示"
+        },
+        "hasEditDisplay": {
+          "type": "boolean",
+          "description": "编辑是否显示"
+        },
+        "hasFixedColumn": {
+          "type": "boolean",
+          "description": "固定列"
+        },
+        "hasPrimaryKey": {
+          "type": "boolean",
+          "description": "主键列"
+        },
+        "hasRequired": {
+          "type": "boolean",
+          "description": "必填字段"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "ignoreInsert": {
+          "type": "boolean",
+          "description": "插入时候忽略"
+        },
+        "inputType": {
+          "type": "string",
+          "description": "输入类型"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "层级"
+        },
+        "parentFieldCode": {
+          "type": "string",
+          "description": "父级列"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "父级ID"
+        },
+        "precisionSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "小数精度大小"
+        },
+        "regexPattern": {
+          "type": "string",
+          "description": "校验的正则"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpFieldsUpdateDTO"
+    },
+    "FpmTmpFiledsVO": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "显示名称"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段编码"
+        },
+        "fieldDesc": {
+          "type": "string",
+          "description": "字段描述"
+        },
+        "fieldName": {
+          "type": "string",
+          "description": "字段名称"
+        },
+        "fieldType": {
+          "type": "string",
+          "description": "数据类型"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "格式"
+        },
+        "hasDeleteKey": {
+          "type": "boolean",
+          "description": "删除键"
+        },
+        "hasFixedColumn": {
+          "type": "boolean",
+          "description": "固定列"
+        },
+        "hasPrimaryKey": {
+          "type": "boolean",
+          "description": "主键列"
+        },
+        "hasRequired": {
+          "type": "boolean",
+          "description": "必填字段"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "ignoreInsert": {
+          "type": "boolean",
+          "description": "插入时候忽略"
+        },
+        "inputType": {
+          "type": "string",
+          "description": "输入类型"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "description": "层级"
+        },
+        "parentFieldCode": {
+          "type": "string",
+          "description": "父级列"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "父级ID"
+        },
+        "precisionSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "小数精度大小"
+        },
+        "regexPattern": {
+          "type": "string",
+          "description": "校验的正则"
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "数据SHEET名称"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpFiledsVO"
+    },
+    "FpmTmpValidationInsertDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "regulationName",
+        "templateCode"
+      ],
+      "properties": {
+        "extConf": {
+          "type": "string",
+          "description": "规则扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "regulationName": {
+          "type": "string",
+          "description": "规则名称"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpValidationInsertDTO"
+    },
+    "FpmTmpValidationListDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "templateCode"
+      ],
+      "properties": {
+        "fieldCode": {
+          "type": "string",
+          "description": "字段编码"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模板编码"
+        }
+      },
+      "title": "FpmTmpValidationListDTO"
+    },
+    "FpmTmpValidationUpdateDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "id",
+        "regulationName",
+        "templateCode"
+      ],
+      "properties": {
+        "extConf": {
+          "type": "string",
+          "description": "规则扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "regulationName": {
+          "type": "string",
+          "description": "规则名称"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpValidationUpdateDTO"
+    },
+    "FpmTmpValidationVO": {
+      "type": "object",
+      "properties": {
+        "extConf": {
+          "type": "string",
+          "description": "规则扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "regulationName": {
+          "type": "string",
+          "description": "规则名称"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmTmpValidationVO"
+    },
+    "FpmWebFilterConditionsInsertDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "hasRequired",
+        "searchInputType",
+        "templateCode"
+      ],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "diplayFieldName": {
+          "type": "string",
+          "description": "显示标签名称"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "extDictQuery": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段"
+        },
+        "filterField": {
+          "type": "string",
+          "description": "引用过滤字段"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "显示格式"
+        },
+        "hasRequired": {
+          "type": "integer",
+          "format": "int32",
+          "description": "必填字段"
+        },
+        "linkFilterInfo": {
+          "type": "string",
+          "description": "级联信息"
+        },
+        "refDiplayFieldName": {
+          "type": "string",
+          "description": "引用显示字段"
+        },
+        "requiredErrorFormat": {
+          "type": "string",
+          "description": "必填项为空提示"
+        },
+        "searchInputType": {
+          "type": "string",
+          "description": "搜索输入类型"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebFilterConditionsInsertDTO"
+    },
+    "FpmWebFilterConditionsUpdateDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "hasRequired",
+        "id",
+        "searchInputType",
+        "templateCode"
+      ],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "diplayFieldName": {
+          "type": "string",
+          "description": "显示标签名称"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "extDictQuery": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段"
+        },
+        "filterField": {
+          "type": "string",
+          "description": "引用过滤字段"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "显示格式"
+        },
+        "hasRequired": {
+          "type": "integer",
+          "format": "int32",
+          "description": "必填字段"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "linkFilterInfo": {
+          "type": "string",
+          "description": "级联信息"
+        },
+        "refDiplayFieldName": {
+          "type": "string",
+          "description": "引用显示字段"
+        },
+        "requiredErrorFormat": {
+          "type": "string",
+          "description": "必填项为空提示"
+        },
+        "searchInputType": {
+          "type": "string",
+          "description": "搜索输入类型"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebFilterConditionsUpdateDTO"
+    },
+    "FpmWebFilterConditionsVO": {
+      "type": "object",
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "diplayFieldName": {
+          "type": "string",
+          "description": "显示标签名称"
+        },
+        "dsDimentsionCode": {
+          "type": "string",
+          "description": "DS维度编码"
+        },
+        "extDictQuery": {
+          "type": "string",
+          "description": "扩展属性"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段"
+        },
+        "filterField": {
+          "type": "string",
+          "description": "引用过滤字段"
+        },
+        "formatStr": {
+          "type": "string",
+          "description": "显示格式"
+        },
+        "hasRequired": {
+          "type": "integer",
+          "format": "int32",
+          "description": "必填字段"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "linkFilterInfo": {
+          "type": "string",
+          "description": "级联信息"
+        },
+        "refDiplayFieldName": {
+          "type": "string",
+          "description": "引用显示字段"
+        },
+        "requiredErrorFormat": {
+          "type": "string",
+          "description": "必填项为空提示"
+        },
+        "searchInputType": {
+          "type": "string",
+          "description": "搜索输入类型"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebFilterConditionsVO"
+    },
+    "FpmWebTableInsertDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "hasDisplay",
+        "hasDownload",
+        "hasDownloadData",
+        "hasEditDisplay",
+        "isDropDown",
+        "templateCode"
+      ],
+      "properties": {
+        "align": {
+          "type": "string",
+          "description": "对齐方式"
+        },
+        "columnWidth": {
+          "type": "string",
+          "description": "宽度"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "frozen": {
+          "type": "string",
+          "description": "冻结"
+        },
+        "hasDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示页面"
+        },
+        "hasDownload": {
+          "type": "string",
+          "description": "能否下载"
+        },
+        "hasDownloadData": {
+          "type": "string",
+          "description": "能否下载数据"
+        },
+        "hasEditDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示修改"
+        },
+        "isDropDown": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否下拉"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "sortable": {
+          "type": "string",
+          "description": "能否排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebTableInsertDTO"
+    },
+    "FpmWebTableUpdateDTO": {
+      "type": "object",
+      "required": [
+        "fieldCode",
+        "hasDisplay",
+        "hasDownload",
+        "hasDownloadData",
+        "hasEditDisplay",
+        "id",
+        "isDropDown",
+        "templateCode"
+      ],
+      "properties": {
+        "align": {
+          "type": "string",
+          "description": "对齐方式"
+        },
+        "columnWidth": {
+          "type": "string",
+          "description": "宽度"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "frozen": {
+          "type": "string",
+          "description": "冻结"
+        },
+        "hasDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示页面"
+        },
+        "hasDownload": {
+          "type": "string",
+          "description": "能否下载"
+        },
+        "hasDownloadData": {
+          "type": "string",
+          "description": "能否下载数据"
+        },
+        "hasEditDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示修改"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "isDropDown": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否下拉"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "sortable": {
+          "type": "string",
+          "description": "能否排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebTableUpdateDTO"
+    },
+    "FpmWebTableVO": {
+      "type": "object",
+      "properties": {
+        "align": {
+          "type": "string",
+          "description": "对齐方式"
+        },
+        "columnWidth": {
+          "type": "string",
+          "description": "宽度"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段CODE"
+        },
+        "frozen": {
+          "type": "string",
+          "description": "冻结"
+        },
+        "hasDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示页面"
+        },
+        "hasDownload": {
+          "type": "string",
+          "description": "能否下载"
+        },
+        "hasDownloadData": {
+          "type": "string",
+          "description": "能否下载数据"
+        },
+        "hasEditDisplay": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否显示修改"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键id"
+        },
+        "isDropDown": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否下拉"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "sortable": {
+          "type": "string",
+          "description": "能否排序"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "模版CODE"
+        }
+      },
+      "title": "FpmWebTableVO"
+    },
+    "PageResult": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "description": "当前页，从0开始"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "description": "每页记录数"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总页数"
+        },
+        "sort": {
+          "type": "array",
+          "description": "排序信息",
+          "items": {
+            "originalRef": "PageSort",
+            "$ref": "#/definitions/PageSort"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "description": "总记录数"
+        }
+      },
+      "title": "PageResult",
+      "description": "分页结果"
+    },
+    "PageSort": {
+      "type": "object",
+      "properties": {
+        "direction": {
+          "type": "string",
+          "description": "排序标识，asc：升序，desc:降序"
+        },
+        "property": {
+          "type": "string",
+          "description": "排序属性"
+        }
+      },
+      "title": "PageSort",
+      "description": "分页排序"
+    },
+    "PeriodDataCopyParam": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "confCodeList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sourcePeriod": {
+          "type": "string"
+        },
+        "targetPeriod": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PeriodDataCopyParam"
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "object",
+          "description": "返回对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result",
+      "description": "返回信息"
+    },
+    "ResultPagingResponse«List«字段数据VO对象»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "字段数据VO对象",
+            "$ref": "#/definitions/字段数据VO对象"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        },
+        "paging": {
+          "description": "分页信息",
+          "originalRef": "PageResult",
+          "$ref": "#/definitions/PageResult"
+        }
+      },
+      "title": "ResultPagingResponse«List«字段数据VO对象»»",
+      "description": "带分页结果的返回信息"
+    },
+    "ResultPagingResponse«List«字段类型VO对象»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "字段类型VO对象",
+            "$ref": "#/definitions/字段类型VO对象"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        },
+        "paging": {
+          "description": "分页信息",
+          "originalRef": "PageResult",
+          "$ref": "#/definitions/PageResult"
+        }
+      },
+      "title": "ResultPagingResponse«List«字段类型VO对象»»",
+      "description": "带分页结果的返回信息"
+    },
+    "Result«Demo对象»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "Demo对象",
+          "$ref": "#/definitions/Demo对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«Demo对象»",
+      "description": "返回信息"
+    },
+    "Result«FpmTmpBaseInfoVO»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "FpmTmpBaseInfoVO",
+          "$ref": "#/definitions/FpmTmpBaseInfoVO"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«FpmTmpBaseInfoVO»",
+      "description": "返回信息"
+    },
+    "Result«List«FpmDbFragmentationStrategyVO»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "FpmDbFragmentationStrategyVO",
+            "$ref": "#/definitions/FpmDbFragmentationStrategyVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«FpmDbFragmentationStrategyVO»»",
+      "description": "返回信息"
+    },
+    "Result«List«FpmTmpFiledsVO»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "FpmTmpFiledsVO",
+            "$ref": "#/definitions/FpmTmpFiledsVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«FpmTmpFiledsVO»»",
+      "description": "返回信息"
+    },
+    "Result«List«FpmTmpValidationVO»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "FpmTmpValidationVO",
+            "$ref": "#/definitions/FpmTmpValidationVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«FpmTmpValidationVO»»",
+      "description": "返回信息"
+    },
+    "Result«List«FpmWebFilterConditionsVO»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "FpmWebFilterConditionsVO",
+            "$ref": "#/definitions/FpmWebFilterConditionsVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«FpmWebFilterConditionsVO»»",
+      "description": "返回信息"
+    },
+    "Result«List«FpmWebTableVO»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "originalRef": "FpmWebTableVO",
+            "$ref": "#/definitions/FpmWebTableVO"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«FpmWebTableVO»»",
+      "description": "返回信息"
+    },
+    "Result«List«string»»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "array",
+          "description": "返回对象",
+          "items": {
+            "type": "string"
+          }
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«List«string»»",
+      "description": "返回信息"
+    },
+    "Result«boolean»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "boolean",
+          "description": "返回对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«boolean»",
+      "description": "返回信息"
+    },
+    "Result«long»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "type": "integer",
+          "format": "int64",
+          "description": "返回对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«long»",
+      "description": "返回信息"
+    },
+    "Result«字段数据VO对象»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "字段数据VO对象",
+          "$ref": "#/definitions/字段数据VO对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«字段数据VO对象»",
+      "description": "返回信息"
+    },
+    "Result«字段类型VO对象»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "字段类型VO对象",
+          "$ref": "#/definitions/字段类型VO对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«字段类型VO对象»",
+      "description": "返回信息"
+    },
+    "Result«流程任务VO对象»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "流程任务VO对象",
+          "$ref": "#/definitions/流程任务VO对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«流程任务VO对象»",
+      "description": "返回信息"
+    },
+    "Result«配置基本信息VO对象»": {
+      "type": "object",
+      "required": [
+        "code",
+        "data",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "结果编码"
+        },
+        "data": {
+          "description": "返回对象",
+          "originalRef": "配置基本信息VO对象",
+          "$ref": "#/definitions/配置基本信息VO对象"
+        },
+        "message": {
+          "type": "string",
+          "description": "结果消息"
+        }
+      },
+      "title": "Result«配置基本信息VO对象»",
+      "description": "返回信息"
+    },
+    "SelectedConditionParam": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "fieldName": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "IN",
+            "NOT_IN",
+            "EQUALS",
+            "NOT_EQUALS",
+            "GREATER",
+            "LEES",
+            "GREATER_OR_EQUALS",
+            "LESS_OR_EQUALS",
+            "CONTAINS",
+            "NOT_CONTAINS",
+            "BETWEEN_AND",
+            "NOT_BETWEEN_AND"
+          ]
+        },
+        "sqlFunc": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "title": "SelectedConditionParam"
+    },
+    "分页参数": {
+      "type": "object",
+      "required": [
+        "currentPage",
+        "pageSize"
+      ],
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "conditionParamList": {
+          "type": "array",
+          "items": {
+            "originalRef": "SelectedConditionParam",
+            "$ref": "#/definitions/SelectedConditionParam"
+          }
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "页码，从 1 开始"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页条数，最大值为 100"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "分页参数"
+    },
+    "字典数据创建请求参数": {
+      "type": "object",
+      "required": [
+        "dictCode",
+        "dictLabel",
+        "dictType",
+        "dictValue",
+        "enabled",
+        "sortNum"
+      ],
+      "properties": {
+        "descInfo": {
+          "type": "string",
+          "description": "字典描述"
+        },
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "dictLabel": {
+          "type": "string",
+          "description": "字典标签"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "dictValue": {
+          "type": "string",
+          "description": "字典属性值"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "字典状态"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "字典排序"
+        }
+      },
+      "title": "字典数据创建请求参数"
+    },
+    "字典数据更新请求参数": {
+      "type": "object",
+      "required": [
+        "dictCode",
+        "dictLabel",
+        "dictValue",
+        "enabled",
+        "sortNum"
+      ],
+      "properties": {
+        "descInfo": {
+          "type": "string",
+          "description": "字典描述"
+        },
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "dictLabel": {
+          "type": "string",
+          "description": "字典标签"
+        },
+        "dictValue": {
+          "type": "string",
+          "description": "字典属性值"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "字典状态"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "字典排序"
+        }
+      },
+      "title": "字典数据更新请求参数"
+    },
+    "字典数据查询请求参数": {
+      "type": "object",
+      "required": [
+        "currentPage",
+        "pageSize"
+      ],
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "页码，从 1 开始"
+        },
+        "dictLabel": {
+          "type": "string",
+          "description": "字典标签"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "字典状态"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页条数，最大值为 100"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "字典数据查询请求参数"
+    },
+    "字典类型创建请求参数": {
+      "type": "object",
+      "required": [
+        "dictName",
+        "dictType",
+        "enabled"
+      ],
+      "properties": {
+        "dictName": {
+          "type": "string",
+          "description": "字典名称"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用（1正常 0停用）"
+        }
+      },
+      "title": "字典类型创建请求参数"
+    },
+    "字典类型更新请求参数": {
+      "type": "object",
+      "required": [
+        "dictName",
+        "dictType",
+        "enabled",
+        "id"
+      ],
+      "properties": {
+        "dictName": {
+          "type": "string",
+          "description": "字典名称"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用(1正常 0停用)"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        }
+      },
+      "title": "字典类型更新请求参数"
+    },
+    "字典类型查询请求参数": {
+      "type": "object",
+      "required": [
+        "currentPage",
+        "pageSize"
+      ],
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        },
+        "confCode": {
+          "type": "string"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "页码，从 1 开始"
+        },
+        "dictName": {
+          "type": "string",
+          "description": "字典名称"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用（1正常 0停用）"
+        },
+        "i18n": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "每页条数，最大值为 100"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "userCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "字典类型查询请求参数"
+    },
+    "字段数据VO对象": {
+      "type": "object",
+      "properties": {
+        "descInfo": {
+          "type": "string",
+          "description": "字典描述"
+        },
+        "dictCode": {
+          "type": "string",
+          "description": "字典编码"
+        },
+        "dictLabel": {
+          "type": "string",
+          "description": "字典标签"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "dictValue": {
+          "type": "string",
+          "description": "字典属性值 "
+        },
+        "enabled": {
+          "type": "integer",
+          "format": "int32",
+          "description": "字典状态"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "字典排序"
+        }
+      },
+      "title": "字段数据VO对象"
+    },
+    "字段类型VO对象": {
+      "type": "object",
+      "properties": {
+        "dictName": {
+          "type": "string",
+          "description": "字典名称"
+        },
+        "dictType": {
+          "type": "string",
+          "description": "字典类型"
+        },
+        "enabled": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否启用（0正常 1停用）"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        }
+      },
+      "title": "字段类型VO对象"
+    },
+    "插入表任务VO对象": {
+      "type": "object",
+      "properties": {
+        "databaseObject": {
+          "type": "string",
+          "description": "数据库对象"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型"
+        },
+        "deleteSql": {
+          "type": "string",
+          "description": "执行删除sql"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id"
+        }
+      },
+      "title": "插入表任务VO对象"
+    },
+    "插入表任务创建请求参数": {
+      "type": "object",
+      "required": [
+        "confCode",
+        "databaseObject",
+        "databaseObjectType",
+        "flowCode",
+        "flowName",
+        "flowType"
+      ],
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "databaseObject": {
+          "type": "string",
+          "description": "数据库对象"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型"
+        },
+        "deleteSql": {
+          "type": "string",
+          "description": "执行删除sql"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        }
+      },
+      "title": "插入表任务创建请求参数"
+    },
+    "插入表任务更新请求参数": {
+      "type": "object",
+      "required": [
+        "databaseObject",
+        "databaseObjectType",
+        "flowCode",
+        "flowName",
+        "flowType",
+        "id"
+      ],
+      "properties": {
+        "databaseObject": {
+          "type": "string",
+          "description": "数据库对象"
+        },
+        "databaseObjectType": {
+          "type": "string",
+          "description": "数据库对象类型"
+        },
+        "deleteSql": {
+          "type": "string",
+          "description": "执行删除sql"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id"
+        }
+      },
+      "title": "插入表任务更新请求参数"
+    },
+    "数据校验、补全任务VO对象": {
+      "type": "object",
+      "properties": {
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "fpmFlowDataValidationParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "过程参数更新请求参数",
+            "$ref": "#/definitions/过程参数更新请求参数"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "正则表达式"
+        },
+        "procedureName": {
+          "type": "string",
+          "description": "过程名称"
+        },
+        "validationColumnNames": {
+          "type": "string",
+          "description": "验证字段列表"
+        }
+      },
+      "title": "数据校验、补全任务VO对象"
+    },
+    "数据校验、补全任务创建请求参数": {
+      "type": "object",
+      "required": [
+        "confCode",
+        "flowCode",
+        "flowName",
+        "flowType",
+        "fpmFlowDataValidationParams"
+      ],
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        },
+        "fpmFlowDataValidationParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "过程参数创建请求参数",
+            "$ref": "#/definitions/过程参数创建请求参数"
+          }
+        },
+        "pattern": {
+          "type": "string",
+          "description": "正则表达式"
+        },
+        "procedureName": {
+          "type": "string",
+          "description": "过程名称"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "validationColumnNames": {
+          "type": "string",
+          "description": "验证字段列表"
+        }
+      },
+      "title": "数据校验、补全任务创建请求参数"
+    },
+    "数据校验、补全任务更新请求参数": {
+      "type": "object",
+      "required": [
+        "flowCode",
+        "flowName",
+        "flowType",
+        "fpmFlowDataValidationParams",
+        "id"
+      ],
+      "properties": {
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        },
+        "fpmFlowDataValidationParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "过程参数更新请求参数",
+            "$ref": "#/definitions/过程参数更新请求参数"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "正则表达式"
+        },
+        "procedureName": {
+          "type": "string",
+          "description": "过程名称"
+        },
+        "validationColumnNames": {
+          "type": "string",
+          "description": "验证字段列表"
+        }
+      },
+      "title": "数据校验、补全任务更新请求参数"
+    },
+    "流程任务VO对象": {
+      "type": "object",
+      "properties": {
+        "flowDataValidationTaskVO": {
+          "description": "数据校验、补全任务VO对象",
+          "originalRef": "数据校验、补全任务VO对象",
+          "$ref": "#/definitions/数据校验、补全任务VO对象"
+        },
+        "flowImportTaskVO": {
+          "description": "插入表任务VO对象",
+          "originalRef": "插入表任务VO对象",
+          "$ref": "#/definitions/插入表任务VO对象"
+        },
+        "flowScheduleTaskVO": {
+          "description": "调度任务VO对象",
+          "originalRef": "调度任务VO对象",
+          "$ref": "#/definitions/调度任务VO对象"
+        }
+      },
+      "title": "流程任务VO对象"
+    },
+    "调度任务VO对象": {
+      "type": "object",
+      "properties": {
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "fpmFlowScheduleParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "调度任务参数创建请求参数",
+            "$ref": "#/definitions/调度任务参数创建请求参数"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "paramTxt": {
+          "type": "string",
+          "description": "参数文本"
+        },
+        "scheduleCategoryCode": {
+          "type": "string",
+          "description": "调度分组CODE"
+        },
+        "scheduleProcessName": {
+          "type": "string",
+          "description": "dolphin工作流名称"
+        },
+        "scheduleProjectName": {
+          "type": "string",
+          "description": "dolphin项目名"
+        },
+        "scheduleType": {
+          "type": "string",
+          "description": "调度类型"
+        }
+      },
+      "title": "调度任务VO对象"
+    },
+    "调度任务创建请求参数": {
+      "type": "object",
+      "required": [
+        "confCode",
+        "flowCode",
+        "flowName",
+        "flowType",
+        "fpmFlowScheduleParams"
+      ],
+      "properties": {
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowName": {
+          "type": "string",
+          "description": "流程名称"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        },
+        "fpmFlowScheduleParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "调度任务参数创建请求参数",
+            "$ref": "#/definitions/调度任务参数创建请求参数"
+          }
+        },
+        "paramTxt": {
+          "type": "string",
+          "description": "参数文本"
+        },
+        "scheduleCategoryCode": {
+          "type": "string",
+          "description": "调度分组CODE"
+        },
+        "scheduleProcessName": {
+          "type": "string",
+          "description": "dolphin工作流名称"
+        },
+        "scheduleProjectName": {
+          "type": "string",
+          "description": "dolphin项目名"
+        },
+        "scheduleType": {
+          "type": "string",
+          "description": "调度类型"
+        }
+      },
+      "title": "调度任务创建请求参数"
+    },
+    "调度任务参数创建请求参数": {
+      "type": "object",
+      "properties": {
+        "aggregateType": {
+          "type": "string",
+          "description": "聚合类型"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "fieldCode": {
+          "type": "string",
+          "description": "字段编码"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id"
+        },
+        "scheduleParameCode": {
+          "type": "string",
+          "description": "调度参数CODE"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "value": {
+          "type": "object",
+          "description": "参数字段值"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "值类型"
+        }
+      },
+      "title": "调度任务参数创建请求参数"
+    },
+    "调度任务更新请求参数": {
+      "type": "object",
+      "required": [
+        "flowCode",
+        "flowType",
+        "fpmFlowScheduleParams",
+        "id"
+      ],
+      "properties": {
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "flowType": {
+          "type": "string",
+          "description": "流程类型"
+        },
+        "fpmFlowScheduleParams": {
+          "type": "array",
+          "description": "参数列表",
+          "items": {
+            "originalRef": "调度任务参数创建请求参数",
+            "$ref": "#/definitions/调度任务参数创建请求参数"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "paramTxt": {
+          "type": "string",
+          "description": "参数文本"
+        },
+        "scheduleCategoryCode": {
+          "type": "string",
+          "description": "调度分组CODE"
+        },
+        "scheduleProcessName": {
+          "type": "string",
+          "description": "dolphin工作流名称"
+        },
+        "scheduleProjectName": {
+          "type": "string",
+          "description": "dolphin项目名"
+        },
+        "scheduleType": {
+          "type": "string",
+          "description": "调度类型"
+        }
+      },
+      "title": "调度任务更新请求参数"
+    },
+    "过程参数创建请求参数": {
+      "type": "object",
+      "properties": {
+        "aggregateType": {
+          "type": "string",
+          "description": "聚合类型"
+        },
+        "dataTypeName": {
+          "type": "string",
+          "description": "参数类型名称"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "hasMsgParameter": {
+          "type": "boolean",
+          "description": "是否消息参数"
+        },
+        "parameterName": {
+          "type": "string",
+          "description": "参数名称"
+        },
+        "parameterRirection": {
+          "type": "string",
+          "description": "输出参数"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "validationCode": {
+          "type": "string",
+          "description": "验证的参数CODE"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "值类型"
+        }
+      },
+      "title": "过程参数创建请求参数"
+    },
+    "过程参数更新请求参数": {
+      "type": "object",
+      "properties": {
+        "aggregateType": {
+          "type": "string",
+          "description": "聚合类型"
+        },
+        "dataTypeName": {
+          "type": "string",
+          "description": "参数类型名称"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "默认值"
+        },
+        "flowCode": {
+          "type": "string",
+          "description": "流程CODE"
+        },
+        "hasMsgParameter": {
+          "type": "boolean",
+          "description": "是否消息参数"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "id"
+        },
+        "parameterName": {
+          "type": "string",
+          "description": "参数名称"
+        },
+        "parameterRirection": {
+          "type": "string",
+          "description": "输出参数"
+        },
+        "sortNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "validationCode": {
+          "type": "string",
+          "description": "验证的参数CODE"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "值类型"
+        }
+      },
+      "title": "过程参数更新请求参数"
+    },
+    "配置基本信息VO对象": {
+      "type": "object",
+      "properties": {
+        "allowedExtensions": {
+          "type": "string",
+          "description": "文件扩展名称"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类别名称"
+        },
+        "categoryOrderNum": {
+          "type": "string",
+          "description": "配置类别排序"
+        },
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "confName": {
+          "type": "string",
+          "description": "名称"
+        },
+        "dataCopyInfo": {
+          "type": "string",
+          "description": "数据复制配置"
+        },
+        "dataOverrideType": {
+          "type": "string",
+          "description": "覆盖方式，Replace：全量，Append：增量"
+        },
+        "descInfo": {
+          "type": "string",
+          "description": "描述"
+        },
+        "dsAppCode": {
+          "type": "string",
+          "description": "DS的应用编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展信息，包括是否显示失效"
+        },
+        "hasAsyncExec": {
+          "type": "boolean",
+          "description": "异步执行"
+        },
+        "i18N": {
+          "type": "string",
+          "description": "I8语言编码"
+        },
+        "iconName": {
+          "type": "string",
+          "description": "图标名称"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "queryWithCipherColumn": {
+          "type": "boolean",
+          "description": "控制 SQL 查询内容从原文列还是加密列查询"
+        },
+        "rightCode": {
+          "type": "string",
+          "description": "权限编码"
+        },
+        "roleBased": {
+          "type": "boolean",
+          "description": "是否基于角色"
+        },
+        "sqlShow": {
+          "type": "boolean",
+          "description": "是否显示执行sql"
+        },
+        "subCategoryName": {
+          "type": "string",
+          "description": "子配置类别名称"
+        },
+        "tenantId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "租户ID"
+        },
+        "topic": {
+          "type": "string",
+          "description": "主题"
+        }
+      },
+      "title": "配置基本信息VO对象"
+    },
+    "配置基础信息创建DTO": {
+      "type": "object",
+      "required": [
+        "allowedExtensions",
+        "categoryName",
+        "confCode",
+        "confName",
+        "dataOverrideType",
+        "dsAppCode",
+        "roleBased",
+        "subCategoryName",
+        "topic"
+      ],
+      "properties": {
+        "allowedExtensions": {
+          "type": "string",
+          "description": "文件扩展名称"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类别名称"
+        },
+        "categoryOrderNum": {
+          "type": "string",
+          "description": "配置类别排序"
+        },
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "confName": {
+          "type": "string",
+          "description": "名称"
+        },
+        "dataCopyInfo": {
+          "type": "string",
+          "description": "数据复制配置"
+        },
+        "dataOverrideType": {
+          "type": "string",
+          "description": "覆盖方式，Replace：全量，Append：增量"
+        },
+        "descInfo": {
+          "type": "string",
+          "description": "描述"
+        },
+        "dsAppCode": {
+          "type": "string",
+          "description": "DS的应用编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展信息，包括是否显示失效"
+        },
+        "hasAsyncExec": {
+          "type": "boolean",
+          "description": "异步执行"
+        },
+        "i18N": {
+          "type": "string",
+          "description": "I8语言编码"
+        },
+        "iconName": {
+          "type": "string",
+          "description": "图标名称"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "queryWithCipherColumn": {
+          "type": "boolean",
+          "description": "控制 SQL 查询内容从原文列还是加密列查询"
+        },
+        "rightCode": {
+          "type": "string",
+          "description": "权限编码"
+        },
+        "roleBased": {
+          "type": "boolean",
+          "description": "是否基于角色"
+        },
+        "sqlShow": {
+          "type": "boolean",
+          "description": "是否显示执行sql"
+        },
+        "subCategoryName": {
+          "type": "string",
+          "description": "子配置类别名称"
+        },
+        "tenantId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "租户ID"
+        },
+        "topic": {
+          "type": "string",
+          "description": "主题"
+        }
+      },
+      "title": "配置基础信息创建DTO"
+    },
+    "配置基础信息更新DTO": {
+      "type": "object",
+      "required": [
+        "allowedExtensions",
+        "categoryName",
+        "confCode",
+        "confName",
+        "dataOverrideType",
+        "dsAppCode",
+        "id",
+        "roleBased",
+        "subCategoryName",
+        "topic"
+      ],
+      "properties": {
+        "allowedExtensions": {
+          "type": "string",
+          "description": "文件扩展名称"
+        },
+        "categoryName": {
+          "type": "string",
+          "description": "配置类别名称"
+        },
+        "categoryOrderNum": {
+          "type": "string",
+          "description": "配置类别排序"
+        },
+        "confCode": {
+          "type": "string",
+          "description": "编码"
+        },
+        "confName": {
+          "type": "string",
+          "description": "名称"
+        },
+        "dataCopyInfo": {
+          "type": "string",
+          "description": "数据复制配置"
+        },
+        "dataOverrideType": {
+          "type": "string",
+          "description": "覆盖方式，Replace：全量，Append：增量"
+        },
+        "descInfo": {
+          "type": "string",
+          "description": "描述"
+        },
+        "dsAppCode": {
+          "type": "string",
+          "description": "DS的应用编码"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用"
+        },
+        "extDict": {
+          "type": "string",
+          "description": "扩展信息，包括是否显示失效"
+        },
+        "hasAsyncExec": {
+          "type": "boolean",
+          "description": "异步执行"
+        },
+        "i18N": {
+          "type": "string",
+          "description": "I8语言编码"
+        },
+        "iconName": {
+          "type": "string",
+          "description": "图标名称"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主键ID"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int32",
+          "description": "排序"
+        },
+        "queryWithCipherColumn": {
+          "type": "boolean",
+          "description": "控制 SQL 查询内容从原文列还是加密列查询"
+        },
+        "rightCode": {
+          "type": "string",
+          "description": "权限编码"
+        },
+        "roleBased": {
+          "type": "boolean",
+          "description": "是否基于角色"
+        },
+        "sqlShow": {
+          "type": "boolean",
+          "description": "是否显示执行sql"
+        },
+        "subCategoryName": {
+          "type": "string",
+          "description": "子配置类别名称"
+        },
+        "tenantId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "租户ID"
+        },
+        "topic": {
+          "type": "string",
+          "description": "主题"
+        }
+      },
+      "title": "配置基础信息更新DTO"
+    }
+  }
+}

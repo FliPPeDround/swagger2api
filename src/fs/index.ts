@@ -1,8 +1,9 @@
 import fs from 'fs-extra'
+import { outFileDir } from '@/answers'
 
 async function example(fileDir: string, data: string) {
   try {
-    await fs.outputFile(fileDir, data)
+    await fs.outputFile(outFileDir + fileDir, data)
   }
   catch (err) {
     console.error(err)
@@ -11,7 +12,7 @@ async function example(fileDir: string, data: string) {
 
 export async function writeApiFsMap(apiFsMap: Map<string, string[]>) {
   apiFsMap.forEach((apiFs, functionName) => {
-    const fileDir = `./api/${functionName}.js`
+    const fileDir = `/${functionName}.js`
     const data = apiFs.join('\n')
     example(fileDir, data)
   })

@@ -1,21 +1,37 @@
-import { getSwaggerJSON } from './swaggerJson'
 import { importTemplate, requireTemplate } from '@/template'
-const { paths } = await getSwaggerJSON()
+import { hasChinese } from '@/shared'
 
-export async function getApiFsMap() {
+export async function getApiFsMap(paths: any) {
   const apiFsMap = new Map()
   Object.keys(paths).forEach((url) => {
     Object.keys(paths[url]).forEach((method) => {
       const body = method === 'post' ? 'data' : 'params'
-      const name = url.substring(url.lastIndexOf('/') + 1)
+
+      const urlList = url.split('/')
+      let axiosurl = url
+      const descriptionhasCN = hasChinese(paths[url][method]?.description)
       const summary = paths[url][method].summary
       const functionName = url.split('/')[1]
+      const argaments = [body]
+
+      for (const index in paths[url][method].parameters) {
+        if (paths[url][method].parameters[index].in === 'path') {
+          argaments.unshift(paths[url][method].parameters[index].name)
+          axiosurl = url.replace(`/{${paths[url][method].parameters[index].name}}`, `/\$\{${paths[url][method].parameters[index].name}\}`)
+        }
+      }
+
+      const name = descriptionhasCN
+        ? urlList[urlList.length - arguments.length].replace(/[${}]/g, '')
+        : paths[url][method]?.description
+
       if (apiFsMap.has(functionName))
-        apiFsMap.get(functionName).push(requireTemplate(url, method, body, name, summary))
+        apiFsMap.get(functionName).push(requireTemplate(axiosurl, method, argaments, body, name, summary))
 
       else
-        apiFsMap.set(functionName, [importTemplate, requireTemplate(url, method, body, name, summary)])
+        apiFsMap.set(functionName, [importTemplate, requireTemplate(axiosurl, method, argaments, body, name, summary)])
     })
   })
   return apiFsMap
 }
+

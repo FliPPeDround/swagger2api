@@ -1,1 +1,3 @@
-export const importTemplate = 'import axios from \'axios\''
+import { interfaceImport } from '@/answers'
+
+export const importTemplate = interfaceImport
